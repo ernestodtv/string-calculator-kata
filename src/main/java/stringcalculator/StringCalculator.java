@@ -3,10 +3,10 @@ package stringcalculator;
 public class StringCalculator {
 
     public static int add(String numbers) {
-        if (numbers.equals("1")) {
-            return 1;
+        if (numbers.isEmpty()) {
+            return 0;
         }
-        return 0;
+        return Integer.parseInt(numbers);
     }
 
 }

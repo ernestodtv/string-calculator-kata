@@ -20,4 +20,11 @@ class StringCalculatorTest {
         assertThat(sum).isOne();
     }
 
+    @Test
+    void should_return_2_for_2() {
+        int sum = StringCalculator.add("2");
+
+        assertThat(sum).isEqualTo(2);
+    }
+
 }
