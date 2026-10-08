@@ -13,4 +13,11 @@ class StringCalculatorTest {
         assertThat(sum).isZero();
     }
 
+    @Test
+    void should_return_1_for_1() {
+        int sum = StringCalculator.add("1");
+
+        assertThat(sum).isOne();
+    }
+
 }
