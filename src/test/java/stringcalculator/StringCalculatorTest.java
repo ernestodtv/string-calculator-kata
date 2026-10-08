@@ -28,18 +28,17 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(expected);
     }
 
-    @Test
-    void should_return_the_sum_for_two_numbers() {
-        int sum = StringCalculator.add("1,2");
+    @ParameterizedTest
+    @CsvSource({
+            "'1,2'      , 3",
+            "'2,5,7'    , 14",
+            "'20,30,50' , 100"
 
-        assertThat(sum).isEqualTo(3);
-    }
+    })
+    void should_return_the_sum_for_two_or_more_numbers(String numbers, int expected) {
+        int sum = StringCalculator.add(numbers);
 
-    @Test
-    void should_return_the_sum_for_three_numbers() {
-        int sum = StringCalculator.add("1,2,3");
-
-        assertThat(sum).isEqualTo(6);
+        assertThat(sum).isEqualTo(expected);
     }
 
 
