@@ -26,3 +26,4 @@ Allow the Add method to handle an unknown amount of numbers.
 - [x] "1,2" → 3
 - [x] "2,5,7" → 14
 - [x] "20,30,50" → 100
+- [x] "1,2,3,4,5" → 15

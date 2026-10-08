@@ -32,7 +32,8 @@ class StringCalculatorTest {
     @CsvSource({
             "'1,2'      , 3",
             "'2,5,7'    , 14",
-            "'20,30,50' , 100"
+            "'20,30,50' , 100",
+            "'1,2,3,4,5', 15"
     })
     void should_return_the_sum_for_two_or_more_numbers(String numbers, int expected) {
         int sum = StringCalculator.add(numbers);
