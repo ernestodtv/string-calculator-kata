@@ -16,3 +16,4 @@ For an empty string it will return 0.
 - [x] ""  → 0
 - [x] "1" → 1
 - [x] "2" → 2
+- [x] "1,2" → 3

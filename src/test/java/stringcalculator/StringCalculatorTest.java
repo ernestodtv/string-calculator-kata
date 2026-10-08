@@ -28,4 +28,11 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(expected);
     }
 
+    @Test
+    void should_return_the_sum_for_two_numbers() {
+        int sum = StringCalculator.add("1,2");
+
+        assertThat(sum).isEqualTo(3);
+    }
+
 }
