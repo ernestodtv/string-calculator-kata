@@ -33,13 +33,11 @@ class StringCalculatorTest {
             "'1,2'      , 3",
             "'2,5,7'    , 14",
             "'20,30,50' , 100"
-
     })
     void should_return_the_sum_for_two_or_more_numbers(String numbers, int expected) {
         int sum = StringCalculator.add(numbers);
 
         assertThat(sum).isEqualTo(expected);
     }
-
 
 }
