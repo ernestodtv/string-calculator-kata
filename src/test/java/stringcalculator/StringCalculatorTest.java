@@ -1,6 +1,8 @@
 package stringcalculator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,18 +15,17 @@ class StringCalculatorTest {
         assertThat(sum).isZero();
     }
 
-    @Test
-    void should_return_1_for_1() {
-        int sum = StringCalculator.add("1");
+    @ParameterizedTest
+    @CsvSource({
+            "1, 1",
+            "2, 2",
+            "3, 3",
+            "12, 12"
+    })
+    void should_return_the_number_for_a_single_number(String numbers, int expected) {
+        int sum = StringCalculator.add(numbers);
 
-        assertThat(sum).isOne();
-    }
-
-    @Test
-    void should_return_2_for_2() {
-        int sum = StringCalculator.add("2");
-
-        assertThat(sum).isEqualTo(2);
+        assertThat(sum).isEqualTo(expected);
     }
 
 }
