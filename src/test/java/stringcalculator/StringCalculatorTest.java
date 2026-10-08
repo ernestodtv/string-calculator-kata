@@ -35,4 +35,12 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(3);
     }
 
+    @Test
+    void should_return_the_sum_for_three_numbers() {
+        int sum = StringCalculator.add("1,2,3");
+
+        assertThat(sum).isEqualTo(6);
+    }
+
+
 }
