@@ -41,4 +41,11 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(expected);
     }
 
+    @Test
+    void should_accept_new_lines_between_numbers() {
+        int sum = StringCalculator.add("1\n2,3");
+
+        assertThat(sum).isEqualTo(6);
+    }
+
 }
