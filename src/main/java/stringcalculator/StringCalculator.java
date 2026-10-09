@@ -21,9 +21,9 @@ public class StringCalculator {
             input = lines[1];
         }
 
-        String regex = Pattern.quote(delimiter) + "|\n";
+        String delimiterRegex = Pattern.quote(delimiter) + "|\n";
 
-        return sum(input, regex);
+        return sum(input, delimiterRegex);
     }
 
     private static boolean hasCustomDelimiter(String input) {
