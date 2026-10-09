@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StringCalculatorTest {
 
@@ -58,6 +59,13 @@ class StringCalculatorTest {
         int sum = StringCalculator.add(input);
 
         assertThat(sum).isEqualTo(expected);
+    }
+
+    @Test
+    void should_throw_exception_for_a_negative_number() {
+        assertThatThrownBy(() -> StringCalculator.add("-1,2"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("negatives not allowed: -1");
     }
 
 }

@@ -21,7 +21,11 @@ public class StringCalculator {
     private static int sum(String numbers, String delimiterRegex) {
         int total = 0;
         for (String number : numbers.split(delimiterRegex)) {
-            total += Integer.parseInt(number);
+            int parsedNumber = Integer.parseInt(number);
+            if (parsedNumber < 0) {
+                throw new IllegalArgumentException("negatives not allowed: " + parsedNumber);
+            }
+            total += parsedNumber;
         }
         return total;
     }
