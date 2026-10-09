@@ -34,12 +34,12 @@ public class StringCalculator {
         return input.startsWith(CUSTOM_DELIMITER_PREFIX);
     }
 
-    private static int sum(String input, String regex) {
-        int sum = 0;
-        for (String number : input.split(regex)) {
-            sum += Integer.parseInt(number);
+    private static int sum(String numbers, String delimiterRegex) {
+        int total = 0;
+        for (String number : numbers.split(delimiterRegex)) {
+            total += Integer.parseInt(number);
         }
-        return sum;
+        return total;
     }
 
 }
