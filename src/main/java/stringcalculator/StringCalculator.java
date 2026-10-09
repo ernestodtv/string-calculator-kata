@@ -1,6 +1,9 @@
 package stringcalculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
 
@@ -20,14 +23,24 @@ public class StringCalculator {
 
     private static int sum(String numbers, String delimiterRegex) {
         int total = 0;
+        List<Integer> negativeNumbers = new ArrayList<>();
         for (String number : numbers.split(delimiterRegex)) {
             int parsedNumber = Integer.parseInt(number);
             if (parsedNumber < 0) {
-                throw new IllegalArgumentException("negatives not allowed: " + parsedNumber);
+                negativeNumbers.add(parsedNumber);
             }
             total += parsedNumber;
         }
+        if (!negativeNumbers.isEmpty()) {
+            throw new IllegalArgumentException("negatives not allowed: " + buildNegativesText(negativeNumbers));
+        }
         return total;
+    }
+
+    private static String buildNegativesText(List<Integer> negativeNumbers) {
+        return negativeNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "));
     }
 
     private record ParsedInput(String delimiter, String numbers) {
