@@ -1,6 +1,6 @@
 package stringcalculator;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -24,23 +24,18 @@ public class StringCalculator {
     }
 
     private static void ensureNoNegatives(List<Integer> numbers) {
-        List<Integer> negativeNumbers = new ArrayList<>();
-        for (int number : numbers) {
-            if (number < 0) {
-                negativeNumbers.add(number);
-            }
-        }
+        List<Integer> negativeNumbers = numbers.stream()
+                .filter(number -> number < 0)
+                .toList();
         if (!negativeNumbers.isEmpty()) {
             throw new IllegalArgumentException("negatives not allowed: " + buildNegativesText(negativeNumbers));
         }
     }
 
     private static int sum(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     private static String buildNegativesText(List<Integer> negativeNumbers) {
@@ -67,11 +62,9 @@ public class StringCalculator {
         }
 
         List<Integer> parseNumbers() {
-            List<Integer> parsedNumbers = new ArrayList<>();
-            for (String number : numbers.split(delimiterRegex())) {
-                parsedNumbers.add(Integer.parseInt(number));
-            }
-            return parsedNumbers;
+            return Arrays.stream(numbers.split(delimiterRegex()))
+                    .map(Integer::parseInt)
+                    .toList();
         }
 
     }
