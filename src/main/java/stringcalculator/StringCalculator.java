@@ -11,7 +11,7 @@ public class StringCalculator {
 
         String delimiter = ",";
 
-        if (input.startsWith("//")) {
+        if (hasCustomDelimiter(input)) {
             String[] lines = input.split("\n", 2);
             delimiter = lines[0].substring(2);
             input = lines[1];
@@ -24,6 +24,10 @@ public class StringCalculator {
             sum += Integer.parseInt(number);
         }
         return sum;
+    }
+
+    private static boolean hasCustomDelimiter(String input) {
+        return input.startsWith("//");
     }
 
 }
