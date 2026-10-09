@@ -18,21 +18,27 @@ public class StringCalculator {
             return 0;
         }
         ParsedInput parsedInput = ParsedInput.from(input);
-        return sum(parsedInput.numbers(), parsedInput.delimiterRegex());
+        List<Integer> parsedNumbers = parsedInput.parseNumbers();
+        ensureNoNegatives(parsedNumbers);
+        return sum(parsedNumbers);
     }
 
-    private static int sum(String numbers, String delimiterRegex) {
-        int total = 0;
+    private static void ensureNoNegatives(List<Integer> numbers) {
         List<Integer> negativeNumbers = new ArrayList<>();
-        for (String number : numbers.split(delimiterRegex)) {
-            int parsedNumber = Integer.parseInt(number);
-            if (parsedNumber < 0) {
-                negativeNumbers.add(parsedNumber);
+        for (int number : numbers) {
+            if (number < 0) {
+                negativeNumbers.add(number);
             }
-            total += parsedNumber;
         }
         if (!negativeNumbers.isEmpty()) {
             throw new IllegalArgumentException("negatives not allowed: " + buildNegativesText(negativeNumbers));
+        }
+    }
+
+    private static int sum(List<Integer> numbers) {
+        int total = 0;
+        for (int number : numbers) {
+            total += number;
         }
         return total;
     }
@@ -58,6 +64,14 @@ public class StringCalculator {
 
         String delimiterRegex() {
             return Pattern.quote(delimiter) + "|" + NEW_LINE;
+        }
+
+        List<Integer> parseNumbers() {
+            List<Integer> parsedNumbers = new ArrayList<>();
+            for (String number : numbers.split(delimiterRegex())) {
+                parsedNumbers.add(Integer.parseInt(number));
+            }
+            return parsedNumbers;
         }
 
     }

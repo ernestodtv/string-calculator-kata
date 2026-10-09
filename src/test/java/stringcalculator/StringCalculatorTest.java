@@ -68,7 +68,7 @@ class StringCalculatorTest {
                 .hasMessage("negatives not allowed: -1");
     }
 
-    @Test
+@Test
     void should_throw_exception_for_several_negative_numbers() {
         assertThatThrownBy(() -> StringCalculator.add("-1,2,3,-4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
