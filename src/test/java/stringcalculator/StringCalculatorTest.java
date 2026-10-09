@@ -48,25 +48,16 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(6);
     }
 
-    @Test
-    void should_accept_semicolon_as_delimiter() {
-        int sum = StringCalculator.add("//;\n1;2");
+    @ParameterizedTest
+    @CsvSource({
+            "'//;\n1;2',    3",
+            "'//.\n2.6.1',  9",
+            "'//^\n1^2\n4', 7",
+    })
+    void should_accept_different_delimiters(String numbers, int expected) {
+        int sum = StringCalculator.add(numbers);
 
-        assertThat(sum).isEqualTo(3);
-    }
-
-    @Test
-    void should_accept_dot_as_delimiter() {
-        int sum = StringCalculator.add("//.\n1.2");
-
-        assertThat(sum).isEqualTo(3);
-    }
-
-    @Test
-    void should_accept_caret_as_delimiter() {
-        int sum = StringCalculator.add("//^\n1^2");
-
-        assertThat(sum).isEqualTo(3);
+        assertThat(sum).isEqualTo(expected);
     }
 
 }

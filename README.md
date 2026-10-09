@@ -29,5 +29,5 @@ Allow the Add method to handle an unknown amount of numbers.
 - [x] "1,2,3,4,5" → 15
 - [x] "1\n2,3" → 6
 - [x] "//;\n1;2" → 3
-- [x] "//.\n1.2" → 3
-- [x] "//^\n1^2" → 3
+- [x] "//.\n2.6.1" → 9
+- [x] "//^\n1^2\n4" → 7
