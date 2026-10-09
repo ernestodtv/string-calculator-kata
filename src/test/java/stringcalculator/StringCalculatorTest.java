@@ -62,4 +62,11 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(3);
     }
 
+    @Test
+    void should_accept_caret_as_delimiter() {
+        int sum = StringCalculator.add("//^\n1^2");
+
+        assertThat(sum).isEqualTo(3);
+    }
+
 }
