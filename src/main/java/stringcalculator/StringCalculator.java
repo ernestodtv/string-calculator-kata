@@ -8,6 +8,8 @@ public class StringCalculator {
 
     private static final String CUSTOM_DELIMITER_PREFIX = "//";
 
+    private static final String NEW_LINE = "\n";
+
     public static int add(String input) {
         if (input.isEmpty()) {
             return 0;
@@ -16,12 +18,12 @@ public class StringCalculator {
         String delimiter = DEFAULT_DELIMITER;
 
         if (hasCustomDelimiter(input)) {
-            String[] lines = input.split("\n", 2);
+            String[] lines = input.split(NEW_LINE, 2);
             delimiter = lines[0].substring(CUSTOM_DELIMITER_PREFIX.length());
             input = lines[1];
         }
 
-        String delimiterRegex = Pattern.quote(delimiter) + "|\n";
+        String delimiterRegex = Pattern.quote(delimiter) + "|" + NEW_LINE;
 
         return sum(input, delimiterRegex);
     }
