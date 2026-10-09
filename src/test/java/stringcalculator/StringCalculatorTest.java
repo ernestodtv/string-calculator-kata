@@ -54,7 +54,7 @@ class StringCalculatorTest {
             "'//.\n2.6.1',  9",
             "'//^\n1^2\n4', 7",
     })
-    void should_accept_different_delimiters(String input, int expected) {
+    void should_accept_custom_delimiters(String input, int expected) {
         int sum = StringCalculator.add(input);
 
         assertThat(sum).isEqualTo(expected);
