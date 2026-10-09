@@ -18,9 +18,10 @@ public class StringCalculator {
         String delimiter = DEFAULT_DELIMITER;
 
         if (hasCustomDelimiter(input)) {
-            String[] lines = input.split(NEW_LINE, 2);
-            delimiter = lines[0].substring(CUSTOM_DELIMITER_PREFIX.length());
-            input = lines[1];
+            String[] parts = input.split(NEW_LINE, 2);
+
+            delimiter = parts[0].substring(CUSTOM_DELIMITER_PREFIX.length());
+            input = parts[1];
         }
 
         String delimiterRegex = Pattern.quote(delimiter) + "|" + NEW_LINE;
