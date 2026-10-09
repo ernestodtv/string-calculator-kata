@@ -14,24 +14,8 @@ public class StringCalculator {
         if (input.isEmpty()) {
             return 0;
         }
-
-        String delimiter = DEFAULT_DELIMITER;
-
-        if (hasCustomDelimiter(input)) {
-            String[] parts = input.split(NEW_LINE, 2);
-            String header = parts[0];
-            String numbers = parts[1];
-            delimiter = header.substring(CUSTOM_DELIMITER_PREFIX.length());
-            input = numbers;
-        }
-
-        String delimiterRegex = Pattern.quote(delimiter) + "|" + NEW_LINE;
-
-        return sum(input, delimiterRegex);
-    }
-
-    private static boolean hasCustomDelimiter(String input) {
-        return input.startsWith(CUSTOM_DELIMITER_PREFIX);
+        ParsedInput parsedInput = ParsedInput.from(input);
+        return sum(parsedInput.numbers(), parsedInput.delimiterRegex());
     }
 
     private static int sum(String numbers, String delimiterRegex) {
@@ -40,6 +24,25 @@ public class StringCalculator {
             total += Integer.parseInt(number);
         }
         return total;
+    }
+
+    private record ParsedInput(String delimiter, String numbers) {
+
+        static ParsedInput from(String input) {
+            if (!input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
+                return new ParsedInput(DEFAULT_DELIMITER, input);
+            }
+            String[] parts = input.split(NEW_LINE, 2);
+            String header = parts[0];
+            String numbers = parts[1];
+            String delimiter = header.substring(CUSTOM_DELIMITER_PREFIX.length());
+            return new ParsedInput(delimiter, numbers);
+        }
+
+        String delimiterRegex() {
+            return Pattern.quote(delimiter) + "|" + NEW_LINE;
+        }
+
     }
 
 }
