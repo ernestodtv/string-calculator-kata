@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
+    private static final String DEFAULT_DELIMITER = ",";
+
     private static final String CUSTOM_DELIMITER_PREFIX = "//";
 
     public static int add(String input) {
@@ -11,7 +13,7 @@ public class StringCalculator {
             return 0;
         }
 
-        String delimiter = ",";
+        String delimiter = DEFAULT_DELIMITER;
 
         if (hasCustomDelimiter(input)) {
             String[] lines = input.split("\n", 2);
