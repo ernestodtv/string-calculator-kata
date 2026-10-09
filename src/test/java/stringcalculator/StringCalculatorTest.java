@@ -22,8 +22,8 @@ class StringCalculatorTest {
             "3, 3",
             "12, 12"
     })
-    void should_return_the_number_for_a_single_number(String numbers, int expected) {
-        int sum = StringCalculator.add(numbers);
+    void should_return_the_number_for_a_single_number(String input, int expected) {
+        int sum = StringCalculator.add(input);
 
         assertThat(sum).isEqualTo(expected);
     }
@@ -35,8 +35,8 @@ class StringCalculatorTest {
             "'20,30,50' , 100",
             "'1,2,3,4,5', 15"
     })
-    void should_return_the_sum_for_two_or_more_numbers(String numbers, int expected) {
-        int sum = StringCalculator.add(numbers);
+    void should_return_the_sum_for_two_or_more_numbers(String input, int expected) {
+        int sum = StringCalculator.add(input);
 
         assertThat(sum).isEqualTo(expected);
     }
@@ -54,8 +54,8 @@ class StringCalculatorTest {
             "'//.\n2.6.1',  9",
             "'//^\n1^2\n4', 7",
     })
-    void should_accept_different_delimiters(String numbers, int expected) {
-        int sum = StringCalculator.add(numbers);
+    void should_accept_different_delimiters(String input, int expected) {
+        int sum = StringCalculator.add(input);
 
         assertThat(sum).isEqualTo(expected);
     }

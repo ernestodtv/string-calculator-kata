@@ -4,23 +4,23 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    public static int add(String numbers) {
-        if (numbers.isEmpty()) {
+    public static int add(String input) {
+        if (input.isEmpty()) {
             return 0;
         }
 
         String delimiter = ",";
 
-        if (numbers.startsWith("//")) {
-            String[] lines = numbers.split("\n", 2);
+        if (input.startsWith("//")) {
+            String[] lines = input.split("\n", 2);
             delimiter = lines[0].substring(2);
-            numbers = lines[1];
+            input = lines[1];
         }
 
         String regex = Pattern.quote(delimiter) + "|\n";
 
         int sum = 0;
-        for (String number : numbers.split(regex)) {
+        for (String number : input.split(regex)) {
             sum += Integer.parseInt(number);
         }
         return sum;
