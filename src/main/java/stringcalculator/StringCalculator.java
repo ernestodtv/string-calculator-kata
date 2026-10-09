@@ -21,15 +21,19 @@ public class StringCalculator {
 
         String regex = Pattern.quote(delimiter) + "|\n";
 
+        return sum(input, regex);
+    }
+
+    private static boolean hasCustomDelimiter(String input) {
+        return input.startsWith("//");
+    }
+
+    private static int sum(String input, String regex) {
         int sum = 0;
         for (String number : input.split(regex)) {
             sum += Integer.parseInt(number);
         }
         return sum;
-    }
-
-    private static boolean hasCustomDelimiter(String input) {
-        return input.startsWith("//");
     }
 
 }
