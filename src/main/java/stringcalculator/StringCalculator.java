@@ -25,7 +25,7 @@ public class StringCalculator {
     }
 
     private static boolean hasCustomDelimiter(String input) {
-        return input.startsWith("//");
+        return input.startsWith(CUSTOM_DELIMITER_PREFIX);
     }
 
     private static int sum(String input, String regex) {
