@@ -48,4 +48,11 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(6);
     }
 
+    @Test
+    void should_accept_semicolon_as_delimiter() {
+        int sum = StringCalculator.add("//;\n1;2");
+
+        assertThat(sum).isEqualTo(3);
+    }
+
 }
