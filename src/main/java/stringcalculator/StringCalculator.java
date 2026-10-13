@@ -25,8 +25,8 @@ public class StringCalculator {
         return sum(ignoreNumbersAboveMax(parsedNumbers));
     }
 
-    private static void ensureNoNegatives(List<Integer> parsedNumbers) {
-        List<Integer> negativeNumbers = parsedNumbers.stream()
+    private static void ensureNoNegatives(List<Integer> numbers) {
+        List<Integer> negativeNumbers = numbers.stream()
                 .filter(number -> number < 0)
                 .toList();
         if (!negativeNumbers.isEmpty()) {
@@ -40,14 +40,14 @@ public class StringCalculator {
                 .collect(Collectors.joining(", "));
     }
 
-    private static List<Integer> ignoreNumbersAboveMax(List<Integer> parsedNumbers) {
-        return parsedNumbers.stream()
+    private static List<Integer> ignoreNumbersAboveMax(List<Integer> numbers) {
+        return numbers.stream()
                 .filter(number -> number <= MAX_NUMBER)
                 .toList();
     }
 
-    private static int sum(List<Integer> parsedNumbers) {
-        return parsedNumbers.stream()
+    private static int sum(List<Integer> numbers) {
+        return numbers.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
     }
