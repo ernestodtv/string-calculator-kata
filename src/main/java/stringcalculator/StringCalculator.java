@@ -57,7 +57,7 @@ public class StringCalculator {
             return new ParsedInput(delimiter, numbers);
         }
 
-        String delimiterRegex() {
+        private String delimiterRegex() {
             return Pattern.quote(delimiter) + "|" + NEW_LINE;
         }
 
