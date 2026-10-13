@@ -60,9 +60,9 @@ public class StringCalculator {
             }
             String[] parts = input.split(NEW_LINE, 2);
             String header = parts[0];
-            String numbers = parts[1];
+            String numbersText = parts[1];
             String delimiter = header.substring(CUSTOM_DELIMITER_PREFIX.length());
-            return new ParsedInput(delimiter, numbers);
+            return new ParsedInput(delimiter, numbersText);
         }
 
         private String delimiterRegex() {
