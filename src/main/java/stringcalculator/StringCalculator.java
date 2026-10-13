@@ -32,16 +32,16 @@ public class StringCalculator {
         }
     }
 
-    private static int sum(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(Integer::intValue)
-                .sum();
-    }
-
     private static String buildNegativesText(List<Integer> negativeNumbers) {
         return negativeNumbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
+    }
+
+    private static int sum(List<Integer> numbers) {
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     private record ParsedInput(String delimiter, String numbersText) {
