@@ -44,7 +44,7 @@ public class StringCalculator {
                 .collect(Collectors.joining(", "));
     }
 
-    private record ParsedInput(String delimiter, String numbers) {
+    private record ParsedInput(String delimiter, String numbersText) {
 
         static ParsedInput from(String input) {
             if (!input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
@@ -62,7 +62,7 @@ public class StringCalculator {
         }
 
         List<Integer> parseNumbers() {
-            return Arrays.stream(numbers.split(delimiterRegex()))
+            return Arrays.stream(numbersText.split(delimiterRegex()))
                     .map(Integer::parseInt)
                     .toList();
         }
