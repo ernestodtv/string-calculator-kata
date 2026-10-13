@@ -13,6 +13,8 @@ public class StringCalculator {
 
     private static final String NEW_LINE = "\n";
 
+    private static final int MAX_NUMBER = 1000;
+
     public static int add(String input) {
         if (input.isEmpty()) {
             return 0;
@@ -20,7 +22,7 @@ public class StringCalculator {
         ParsedInput parsedInput = ParsedInput.from(input);
         List<Integer> parsedNumbers = parsedInput.parseNumbers();
         ensureNoNegatives(parsedNumbers);
-        return sum(parsedNumbers);
+        return sum(ignoreNumbersAboveMax(parsedNumbers));
     }
 
     private static void ensureNoNegatives(List<Integer> numbers) {
@@ -36,6 +38,12 @@ public class StringCalculator {
         return negativeNumbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
+    }
+
+    private static List<Integer> ignoreNumbersAboveMax(List<Integer> parsedNumbers) {
+        return parsedNumbers.stream()
+                .filter(number -> number <= MAX_NUMBER)
+                .toList();
     }
 
     private static int sum(List<Integer> numbers) {

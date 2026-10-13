@@ -75,4 +75,11 @@ class StringCalculatorTest {
                 .hasMessage("negatives not allowed: -1, -4");
     }
 
+    @Test
+    void should_ignore_numbers_bigger_than_1000() {
+        int sum = StringCalculator.add("2,1001");
+
+        assertThat(sum).isEqualTo(2);
+    }
+
 }
