@@ -75,11 +75,15 @@ class StringCalculatorTest {
                 .hasMessage("negatives not allowed: -1, -4");
     }
 
-    @Test
-    void should_ignore_numbers_bigger_than_1000() {
-        int sum = StringCalculator.add("2,1001");
+    @ParameterizedTest
+    @CsvSource({
+            "'2,1001', 2",
+            "'2,1000', 1002"
+    })
+    void should_ignore_numbers_bigger_than_1000(String input, int expected) {
+        int sum = StringCalculator.add(input);
 
-        assertThat(sum).isEqualTo(2);
+        assertThat(sum).isEqualTo(expected);
     }
 
 }
