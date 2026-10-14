@@ -36,3 +36,5 @@ Allow the Add method to handle an unknown amount of numbers.
 - [x] "2,1001" → 2
 - [x] "2,1000" → 1002
 - [x] "//[***]\n1\*\*\*2***3" → 6
+- [x] "'//[..]\n1..2..3\n4', 10"
+- [x] "'//[^^^]\n2^^^2^^^2^^^2', 8"
