@@ -86,4 +86,11 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(expected);
     }
 
+    @Test
+    void should_accept_delimiters_of_any_length_between_square_brackets() {
+        int sum = StringCalculator.add("//[***]\n1***2***3");
+
+        assertThat(sum).isEqualTo(6);
+    }
+
 }

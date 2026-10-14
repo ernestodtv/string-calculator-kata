@@ -11,6 +11,10 @@ public class StringCalculator {
 
     private static final String CUSTOM_DELIMITER_PREFIX = "//";
 
+    private static final String DELIMITER_OPEN_BRACKET = "[";
+
+    private static final String DELIMITER_CLOSE_BRACKET = "]";
+
     private static final String NEW_LINE = "\n";
 
     private static final int MAX_NUMBER = 1000;
@@ -61,8 +65,19 @@ public class StringCalculator {
             String[] parts = input.split(NEW_LINE, 2);
             String header = parts[0];
             String numbersText = parts[1];
-            String delimiter = header.substring(CUSTOM_DELIMITER_PREFIX.length());
+            String delimiterDefinition = header.substring(CUSTOM_DELIMITER_PREFIX.length());
+            String delimiter = extractDelimiter(delimiterDefinition);
             return new ParsedInput(delimiter, numbersText);
+        }
+
+        private static String extractDelimiter(String delimiterDefinition) {
+            if (!delimiterDefinition.startsWith(DELIMITER_OPEN_BRACKET)) {
+                return delimiterDefinition;
+            }
+            return delimiterDefinition.substring(
+                    DELIMITER_OPEN_BRACKET.length(),
+                    delimiterDefinition.indexOf(DELIMITER_CLOSE_BRACKET)
+            );
         }
 
         private String delimiterRegex() {
