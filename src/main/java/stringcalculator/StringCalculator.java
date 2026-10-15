@@ -71,7 +71,7 @@ public class StringCalculator {
         }
 
         private static String extractDelimiter(String delimiterDefinition) {
-            if (!delimiterDefinition.startsWith(DELIMITER_OPEN_BRACKET)) {
+            if (delimiterDefinition.length() == 1) {
                 return delimiterDefinition;
             }
             return delimiterDefinition.substring(

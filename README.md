@@ -31,6 +31,7 @@ Allow the Add method to handle an unknown amount of numbers.
 - [x] "//;\n1;2" → 3
 - [x] "//.\n2.6.1" → 9
 - [x] "//^\n1^2\n4" → 7
+- [x] "//[\n1[2" → 3
 - [x] "-1,2" → IllegalArgumentException "negatives not allowed: -1"
 - [x] "-1,2,3,-4,5" → IllegalArgumentException "negatives not allowed: -1, -4"
 - [x] "2,1001" → 2
