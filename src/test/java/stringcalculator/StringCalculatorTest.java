@@ -91,7 +91,8 @@ class StringCalculatorTest {
     @CsvSource({
             "'//[***]\n1***2***3', 6",
             "'//[..]\n1..2..3\n4', 10",
-            "'//[^^^]\n2^^^2^^^2^^^2', 8"
+            "'//[^^^]\n2^^^2^^^2^^^2', 8",
+            "'//[]]]\n1]]2]]3', 6"
     })
     void should_accept_delimiters_of_any_length_between_square_brackets(String input, int expected) {
         int sum = StringCalculator.add(input);

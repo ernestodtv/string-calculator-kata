@@ -79,7 +79,7 @@ public class StringCalculator {
             }
             return delimiterDefinition.substring(
                     DELIMITER_OPEN_BRACKET.length(),
-                    delimiterDefinition.indexOf(DELIMITER_CLOSE_BRACKET)
+                    delimiterDefinition.length() - DELIMITER_CLOSE_BRACKET.length()
             );
         }
 
