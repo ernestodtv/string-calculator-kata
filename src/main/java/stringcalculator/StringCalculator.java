@@ -90,8 +90,8 @@ public class StringCalculator {
         }
 
         private static boolean hasContentBetweenBrackets(String delimiterDefinition) {
-            return delimiterDefinition.length() >
-                    DELIMITER_OPEN_BRACKET.length() + DELIMITER_CLOSE_BRACKET.length();
+            return delimiterDefinition.length()
+                    > DELIMITER_OPEN_BRACKET.length() + DELIMITER_CLOSE_BRACKET.length();
         }
 
         private String delimiterRegex() {
