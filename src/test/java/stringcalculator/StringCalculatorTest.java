@@ -54,7 +54,7 @@ class StringCalculatorTest {
             "'//;\n1;2',    3",
             "'//.\n2.6.1',  9",
             "'//^\n1^2\n4', 7",
-            "'//[\n1[2',    3",
+            "'//[\n1[2',    3"
     })
     void should_accept_custom_delimiters(String input, int expected) {
         int sum = StringCalculator.add(input);
