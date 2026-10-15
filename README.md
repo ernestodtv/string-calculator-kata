@@ -39,6 +39,7 @@ Allow the Add method to handle an unknown amount of numbers.
 - [x] "//[***]\n1\*\*\*2***3" → 6
 - [x] "//[..]\n1..2..3\n4" → 10
 - [x] "//[^^^]\n2^^^2^^^2^^^2" → 8
+- [x] "//[]]]\n1]]2]]3" → 6
 - [x] "//[\*\*\*\n1***2" → IllegalArgumentException "invalid delimiter definition: [\***"
 - [x] "//[]\n12" → IllegalArgumentException "invalid delimiter definition: []"
 - [x] "//abc\n1abc2" → IllegalArgumentException "invalid delimiter definition: abc"
