@@ -99,11 +99,16 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(expected);
     }
 
-    @Test
-    void should_throw_exception_for_invalid_delimiter_definition() {
-        assertThatThrownBy(() -> StringCalculator.add("//[***\n1***2"))
+    @ParameterizedTest
+    @CsvSource({
+            "'//[***\n1***2', '[***'",
+            "'//[]\n12',      '[]'",
+            "'//abc\n1abc2',  'abc'"
+    })
+    void should_throw_exception_for_invalid_delimiter_definition(String input, String invalidDefinition) {
+        assertThatThrownBy(() -> StringCalculator.add(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("invalid delimiter definition: [***");
+                .hasMessage("invalid delimiter definition: " + invalidDefinition);
     }
 
 }

@@ -85,7 +85,13 @@ public class StringCalculator {
 
         private static boolean isBracketed(String delimiterDefinition) {
             return delimiterDefinition.startsWith(DELIMITER_OPEN_BRACKET)
-                    && delimiterDefinition.endsWith(DELIMITER_CLOSE_BRACKET);
+                    && delimiterDefinition.endsWith(DELIMITER_CLOSE_BRACKET)
+                    && hasContentBetweenBrackets(delimiterDefinition);
+        }
+
+        private static boolean hasContentBetweenBrackets(String delimiterDefinition) {
+            return delimiterDefinition.length() >
+                    DELIMITER_OPEN_BRACKET.length() + DELIMITER_CLOSE_BRACKET.length();
         }
 
         private String delimiterRegex() {
