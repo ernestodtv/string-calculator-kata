@@ -74,10 +74,18 @@ public class StringCalculator {
             if (delimiterDefinition.length() == 1) {
                 return delimiterDefinition;
             }
+            if (!isBracketed(delimiterDefinition)) {
+                throw new IllegalArgumentException("invalid delimiter definition: " + delimiterDefinition);
+            }
             return delimiterDefinition.substring(
                     DELIMITER_OPEN_BRACKET.length(),
                     delimiterDefinition.indexOf(DELIMITER_CLOSE_BRACKET)
             );
+        }
+
+        private static boolean isBracketed(String delimiterDefinition) {
+            return delimiterDefinition.startsWith(DELIMITER_OPEN_BRACKET)
+                    && delimiterDefinition.endsWith(DELIMITER_CLOSE_BRACKET);
         }
 
         private String delimiterRegex() {
