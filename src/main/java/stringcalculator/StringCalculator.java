@@ -9,7 +9,7 @@ public class StringCalculator {
 
     private static final String DEFAULT_DELIMITER = ",";
 
-    private static final String CUSTOM_DELIMITER_PREFIX = "//";
+    private static final String CUSTOM_DELIMITERS_PREFIX = "//";
 
     private static final String DELIMITER_OPEN_BRACKET = "[";
 
@@ -56,46 +56,51 @@ public class StringCalculator {
                 .sum();
     }
 
-    private record ParsedInput(String delimiter, String numbersText) {
+    private record ParsedInput(List<String> delimiters, String numbersText) {
 
         static ParsedInput from(String input) {
-            if (!input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
-                return new ParsedInput(DEFAULT_DELIMITER, input);
+            if (!input.startsWith(CUSTOM_DELIMITERS_PREFIX)) {
+                return new ParsedInput(List.of(DEFAULT_DELIMITER), input);
             }
             String[] parts = input.split(NEW_LINE, 2);
             String header = parts[0];
             String numbersText = parts[1];
-            String delimiterDefinition = header.substring(CUSTOM_DELIMITER_PREFIX.length());
-            String delimiter = extractDelimiter(delimiterDefinition);
-            return new ParsedInput(delimiter, numbersText);
+            String delimitersDefinition = header.substring(CUSTOM_DELIMITERS_PREFIX.length());
+            List<String> delimiters = extractDelimiters(delimitersDefinition);
+            return new ParsedInput(delimiters, numbersText);
         }
 
-        private static String extractDelimiter(String delimiterDefinition) {
-            if (delimiterDefinition.length() == 1) {
-                return delimiterDefinition;
+        private static List<String> extractDelimiters(String delimitersDefinition) {
+            if (delimitersDefinition.length() == 1) {
+                return List.of(delimitersDefinition);
             }
-            if (!isBracketed(delimiterDefinition)) {
-                throw new IllegalArgumentException("invalid delimiter definition: " + delimiterDefinition);
+            if (!isBracketed(delimitersDefinition)) {
+                throw new IllegalArgumentException("invalid delimiter definition: " + delimitersDefinition);
             }
-            return delimiterDefinition.substring(
-                    DELIMITER_OPEN_BRACKET.length(),
-                    delimiterDefinition.length() - DELIMITER_CLOSE_BRACKET.length()
+            return List.of(
+                    delimitersDefinition.substring(
+                            DELIMITER_OPEN_BRACKET.length(),
+                            delimitersDefinition.length() - DELIMITER_CLOSE_BRACKET.length()
+                    )
             );
         }
 
-        private static boolean isBracketed(String delimiterDefinition) {
-            return delimiterDefinition.startsWith(DELIMITER_OPEN_BRACKET)
-                    && delimiterDefinition.endsWith(DELIMITER_CLOSE_BRACKET)
-                    && hasContentBetweenBrackets(delimiterDefinition);
+        private static boolean isBracketed(String delimitersDefinition) {
+            return delimitersDefinition.startsWith(DELIMITER_OPEN_BRACKET)
+                    && delimitersDefinition.endsWith(DELIMITER_CLOSE_BRACKET)
+                    && hasContentBetweenBrackets(delimitersDefinition);
         }
 
-        private static boolean hasContentBetweenBrackets(String delimiterDefinition) {
-            return delimiterDefinition.length()
+        private static boolean hasContentBetweenBrackets(String delimitersDefinition) {
+            return delimitersDefinition.length()
                     > DELIMITER_OPEN_BRACKET.length() + DELIMITER_CLOSE_BRACKET.length();
         }
 
         private String delimiterRegex() {
-            return Pattern.quote(delimiter) + "|" + NEW_LINE;
+            return delimiters.stream()
+                    .map(Pattern::quote)
+                    .collect(Collectors.joining("|"))
+                    .concat("|" + NEW_LINE);
         }
 
         List<Integer> parseNumbers() {
