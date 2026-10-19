@@ -112,11 +112,16 @@ class StringCalculatorTest {
                 .hasMessage("invalid delimiter definition: " + invalidDefinition);
     }
 
-    @Test
-    void should_allow_multiple_delimiters() {
-        int sum = StringCalculator.add("//[*][%]\n1*2%3");
+    @ParameterizedTest
+    @CsvSource({
+            "'//[*][%]\n1*2%3',         6",
+            "'//[-][?][}]\n1-2\n3?1}2', 9",
+            "'//[]][[]\n1]2[2',         5"
+    })
+    void should_allow_multiple_delimiters(String input, int expected) {
+        int sum = StringCalculator.add(input);
 
-        assertThat(sum).isEqualTo(6);
+        assertThat(sum).isEqualTo(expected);
     }
 
 }
