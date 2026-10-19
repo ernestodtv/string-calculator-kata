@@ -15,6 +15,8 @@ public class StringCalculator {
 
     private static final String DELIMITER_CLOSE_BRACKET = "]";
 
+    private static final String DELIMITERS_SEPARATOR = DELIMITER_CLOSE_BRACKET + DELIMITER_OPEN_BRACKET;
+
     private static final String NEW_LINE = "\n";
 
     private static final int MAX_NUMBER = 1000;
@@ -77,12 +79,8 @@ public class StringCalculator {
             if (!isBracketed(delimitersDefinition)) {
                 throw new IllegalArgumentException("invalid delimiter definition: " + delimitersDefinition);
             }
-            return List.of(
-                    delimitersDefinition.substring(
-                            DELIMITER_OPEN_BRACKET.length(),
-                            delimitersDefinition.length() - DELIMITER_CLOSE_BRACKET.length()
-                    )
-            );
+            String bracketsContent = removeOuterBrackets(delimitersDefinition);
+            return List.of(bracketsContent.split(Pattern.quote(DELIMITERS_SEPARATOR)));
         }
 
         private static boolean isBracketed(String delimitersDefinition) {
@@ -94,6 +92,13 @@ public class StringCalculator {
         private static boolean hasContentBetweenBrackets(String delimitersDefinition) {
             return delimitersDefinition.length()
                     > DELIMITER_OPEN_BRACKET.length() + DELIMITER_CLOSE_BRACKET.length();
+        }
+
+        private static String removeOuterBrackets(String delimitersDefinition) {
+            return delimitersDefinition.substring(
+                    DELIMITER_OPEN_BRACKET.length(),
+                    delimitersDefinition.length() - DELIMITER_CLOSE_BRACKET.length()
+            );
         }
 
         private String delimiterRegex() {
