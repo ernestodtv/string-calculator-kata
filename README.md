@@ -66,11 +66,11 @@ Make sure you can also handle multiple delimiters with length longer than one ch
 - [x] "-1,2,3,-4,5" → IllegalArgumentException "negatives not allowed: -1, -4"
 - [x] "2,1001" → 2
 - [x] "2,1000" → 1002
-- [x] "//[***]\n1\*\*\*2***3" → 6
+- [x] "//[\*\*\*]\n1\*\*\*2\*\*\*3" → 6
 - [x] "//[..]\n1..2..3\n4" → 10
 - [x] "//[^^^]\n2^^^2^^^2^^^2" → 8
 - [x] "//[]]]\n1]]2]]3" → 6
-- [x] "//[\*\*\*\n1***2" → IllegalArgumentException "invalid delimiter definition: [\***"
+- [x] "//[\*\*\*\n1\*\*\*2" → IllegalArgumentException "invalid delimiter definition: [\***"
 - [x] "//[]\n12" → IllegalArgumentException "invalid delimiter definition: []"
 - [x] "//abc\n1abc2" → IllegalArgumentException "invalid delimiter definition: abc"
 - [x] "//[*][%]\n1*2%3" → 6
