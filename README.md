@@ -76,3 +76,6 @@ Make sure you can also handle multiple delimiters with length longer than one ch
 - [x] "//[*][%]\n1*2%3" → 6
 - [x] "//[-][?][}]\n1-2\n3?1}2" → 9
 - [x] "//[]][[]\n1]2[2" → 5
+- [x] "//[**][%%]\n1**2%%3" → 6
+- [x] "//[--][..][,,]\n1--2..3,,4" → 10
+- [x] "//[??][¿¿]\n1??2¿¿3??4" → 10

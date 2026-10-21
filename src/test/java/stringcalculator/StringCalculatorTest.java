@@ -124,4 +124,16 @@ class StringCalculatorTest {
         assertThat(sum).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "'//[**][%%]\n1**2%%3',         6",
+            "'//[--][..][,,]\n1--2..3,,4', 10",
+            "'//[??][¿¿]\n1??2¿¿3??4',     10"
+    })
+    void should_allow_multiple_delimiters_with_length_longer_than_one_char(String input, int expected) {
+        int sum = StringCalculator.add(input);
+
+        assertThat(sum).isEqualTo(expected);
+    }
+
 }
