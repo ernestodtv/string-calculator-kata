@@ -73,3 +73,6 @@ Make sure you can also handle multiple delimiters with length longer than one ch
 - [x] "//[\*\*\*\n1***2" → IllegalArgumentException "invalid delimiter definition: [\***"
 - [x] "//[]\n12" → IllegalArgumentException "invalid delimiter definition: []"
 - [x] "//abc\n1abc2" → IllegalArgumentException "invalid delimiter definition: abc"
+- [x] "//[*][%]\n1*2%3" → 6
+- [x] "//[-][?][}]\n1-2\n3?1}2" → 9
+- [x] "//[]][[]\n1]2[2" → 5
